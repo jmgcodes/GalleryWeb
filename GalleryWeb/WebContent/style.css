@@ -1,0 +1,240 @@
+#gallery img {
+	margin: 10px;
+    width: 150px;
+    border: 1px solid black;
+}
+#gallery img.selected {
+    border: 3px solid green;
+}
+#gallery img:hover {
+    cursor: pointer;
+}
+
+ body {
+    display: block;
+    background-attachment: none;
+    font-family: Georgia,'Times New Roman',times,serif;
+    background-color: #efe3c4;
+    }
+    
+    .heading{
+    
+    margin-top: -5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height:100px;
+    background-color: #1a1a1a;
+
+    }
+    
+    #title{
+    
+    	float: left;
+    	margin-top: 20px;
+    	margin-left: 80px;
+    	margin-right: 250px;
+        font-family: Georgia,'Times New Roman',times,serif;
+    	font-size: 56px;
+    	color: white;
+    	z-index: 200;
+    }
+       
+    
+    .tabs{
+    	
+    float: left;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    margin:30px 15px 10px 5px;
+    height:40px;
+    line-height: 40px;
+    width: 150px;
+    font-family: Georgia,'Times New Roman',times,serif;
+    background-color: #1a1a1a;
+	vertical-align: middle;
+	    
+    }
+    
+    #userdetails{
+    
+    	float: right;
+    	margin: 30px 40px 20px 0px;
+    	
+    }
+    
+    #userdp{
+    
+    	margin: 20px 20px 20px 20px;
+    	width: 60px;
+    	height: 60px;
+    	float: right;
+    
+    }
+    
+    .def{
+    
+    	font-size: 20px;
+    	margin: 0px 0px 0px 0px;
+    	color: white;
+    	height: 20px;
+    	
+    
+    }
+    
+    
+   .defsmall{
+    
+    	font-size: 16px;
+    	margin: 3px 0px 0px 0px;
+    	color: white;
+    	height: 20px;
+    	text-align: center;
+    
+    }
+    
+    
+    .tabContainer{
+    
+    	clear: both;
+    		position: absolute;
+    	margin: 10px 10px 10px 10px;
+    	width: 1325px;
+    	height: 465px;
+    	background-color: white;
+    
+    }
+    
+    
+    .page_title{
+    
+    padding-top: 0px;
+    font-size: 22px;
+    color: #000000;
+    text-align: center;
+    height:40px;
+    line-height: 40px;
+    width: auto;
+    font-family: Georgia,'Times New Roman',times,serif;
+	vertical-align: middle;
+    
+    
+    }
+    
+    .primary{
+    
+    float: left;
+    	margin-left: 30px;
+    	margin-top: 20px;
+    	margin-rigth: 20px;
+    	
+    	background-color: #bfbfbf;
+    	
+    	height: 420px;
+    	max-height: 415px;
+    	width: 250px;
+    	overflow: auto;
+    	
+    
+    }
+    
+        .secondary{
+    
+    float: left;
+    	margin-left: 20px;
+    	margin-top: 20px;
+    	margin-rigth: 30px;
+    	
+    	background-color: #f1f1ff;
+    	
+    	height: 420px;
+    	max-height: 415px;
+    	width: 1000px;
+    	overflow: auto;
+    	
+    
+    }
+    
+    
+    .galleryimg{
+       	
+    	height: 25px;
+    	width: 25px;
+    	
+    	margin-left: 10px;
+    	margin-top: -3px;
+    	
+    }
+    
+    
+   .gallerynamesel{
+    
+    padding-left: 15px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 16px;
+    color: red;
+    text-align: left;
+    height:auto;
+    line-height: 18px;
+    width: 235px;
+    font-family: Georgia,'Times New Roman',times,serif;
+	vertical-align: middle;
+    background-color: yellow;
+    }
+    
+    .galleryname{
+    
+    margin-left: 15px;
+    font-size: 16px;
+    color: #1a1a1a;
+    text-align: left;
+    height:auto;
+    line-height: 18px;
+    width: 200px;
+    font-family: Georgia,'Times New Roman',times,serif;
+	vertical-align: middle;
+    
+    }
+    
+    .gallerydes{
+    
+    font-size: 12px;
+    color: #4d4d4d;
+    font-family: Georgia,'Times New Roman',times,serif;
+	vertical-align: middle;
+    	
+    
+    }
+    
+    .addedit{
+    
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    height:30px;
+    line-height: 30px;
+    width: 100px;
+    margin: 0px 55px 5px 75px;
+    font-family: Georgia,'Times New Roman',times,serif;
+    background-color: #1a1a1a;
+	vertical-align: middle;
+    
+    }
+    
+    .normaltf{
+    
+    	width: 500px;
+    	height: 40px;
+    
+    }
+    
+
+    .extendedtf{
+    
+    	width: 500px;
+    	height: 120px;
+    
+    }
+    
+    
