@@ -45,25 +45,26 @@
 	ResultSet rs;
 
 	stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
-	String sql="SELECT * FROM image NATURAL JOIN detail WHERE image.image_id=" + ID;
+	String sql="select * from image, detail, artist where image.image_id = detail.image_id and image.detail_id=detail.detail_id and image.artist_id=artist.artist_id and image.image_id=" + ID;
 	rs=stmt.executeQuery(sql); // Result set get the result of the SQL query
 	while (rs.next()) {
 		
 		title = rs.getString("title");
 		desc = rs.getString("description");
 		
+		
 		%>
 		<img id = "image" src= <%=rs.getString("link") %>>
 		<div id = "detaildiv">
 		
-		<h3 id = "titleid"><%= title %></h3>
+		<h2 id = "titleid"><%= title %></h2>
 		<h3 id = "descid"><%= desc %></h3><br>
 		
 		<p class = "detail"><span class = "detailH">Location:</span>  <%= rs.getString("location") %>, <%= rs.getString("year") %></p>
-		<p class = "detail"><span class = "detailH">Artist:</span> </p>
+		<p class = "detail"><span class = "detailH">Artist:</span> <%= rs.getString("name") %> (<%=rs.getString("artist.description") %>)</p>
 		<p class = "detail"><span class = "detailH">Size:</span> <%= rs.getString("height") %> x <%= rs.getString("width") %></p>
 		<br>
-		<button id = "edit" onclick="unhide()">Edit</button>	
+		<button id = "edit" onclick="unhide()">Edit Details</button>	
 		<br>
 		<div id = "editform" style="display:none;">
 		
@@ -77,12 +78,26 @@
 						
 						<i>Title:</i> <input name="imgtitle" type="text" value="<%= title %>">
 						<i>Desc:</i> <input name="imgdesc" type="text" value="<%= desc %>">
-    					<input type="submit" value="Save"/>
+    					<input type="submit" value="Save Details"/>
 					</form>
 		
 				
 		</div>	
 		
+		
+		</div>
+		
+		<div id = "deletediv">
+					<form method="post">
+    					<input name="SubmitID" type="hidden" value="3">
+						<input name="Save" type="hidden" value="1">
+						<input name="AddEditID" type="hidden" value="1">
+						<input name="funcID" type="hidden" value="1">
+						<input name="imageID" type="hidden" value="<%=ID %>">
+						<input name="detailID" type="hidden" value="<%= Detail_ID%>">
+						
+    					<input id = "deletebtn" type="submit" value="Delete Image"/>
+					</form>
 		</div>
 		
 		<%

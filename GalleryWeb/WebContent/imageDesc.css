@@ -26,7 +26,7 @@ body{
 #detaildiv{
 	
 	float: left;
-	margin: 25px 10px 10px 25px;
+	margin: 15px 10px 10px 25px;
 	height: 300px;
 	width: 500px;
 }
@@ -52,5 +52,24 @@ body{
     height:25px;
     line-height: 25px;
     font-family: Georgia,'Times New Roman',times,serif;
+	
+}
+
+#deletediv{
+	
+	clear: both;
+	background-color: white;
+	height: auto;
+	
+}
+
+#deletebtn{
+	
+	background-color: #4d4d4d;
+	color: white;
+	width: 200px;
+	height:30px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	
 }

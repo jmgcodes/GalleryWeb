@@ -497,9 +497,32 @@ else if(SubmitID != null){
 						result=stmt.executeUpdate(sql_art); // Result set get the result of the SQL query
 
 						if (result != 0) {
+							%>
+							<Center><p class = "msg">Image details updated.. Select a gallery to view images</p></Center>
+							<%
 						}
 						
 					}
+				break;
+				
+				case 3:
+					stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
+					String sql_del="DELETE FROM image WHERE image_id=" + imageID ;
+					int resultdel=stmt.executeUpdate(sql_del); // Result set get the result of the SQL query
+					if (resultdel != 0) {
+
+						stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
+						sql_del="DELETE  FROM detail WHERE image_id=" + imageID + " AND detail_id=" + detailID ;
+						resultdel=stmt.executeUpdate(sql_del); // Result set get the result of the SQL query
+
+						if (resultdel != 0) {
+							%>
+							<Center><p class = "msg">Image deleted! Select a gallery to view images</p></Center>
+							<%
+						}
+						
+					}
+				break;
 
 				
 		}
