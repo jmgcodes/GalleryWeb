@@ -1,0 +1,56 @@
+@CHARSET "UTF-8";
+
+body{
+	
+	background-color: white;
+	
+}
+
+#content{
+	
+	height: auto;
+	width:auto;
+	
+}
+
+#image{
+	
+	float: left;
+	margin: 25px 10px 10px 50px;
+	height: 300px;
+	width: 300px;
+	border: 2px solid black;
+	
+}
+
+#detaildiv{
+	
+	float: left;
+	margin: 25px 10px 10px 25px;
+	height: 300px;
+	width: 500px;
+}
+
+.detailH{
+	
+    font-size: 14px;
+    color: #4d4d4d;
+    text-align: left;
+    margin:0px 0px 0px 5px;
+    height:25px;
+    line-height: 25px;
+    font-family: Georgia,'Times New Roman',times,serif;
+	
+}
+
+.detail{
+	
+    font-size: 18px;
+    color: #1a1a1a;
+    text-align: left;
+    margin:0px 0px 0px 5px;
+    height:25px;
+    line-height: 25px;
+    font-family: Georgia,'Times New Roman',times,serif;
+	
+}

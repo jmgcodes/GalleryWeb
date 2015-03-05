@@ -1,14 +1,15 @@
 #gallery img {
 	margin: 10px;
-    width: 150px;
-    border: 1px solid black;
+    width: 50px;
+    border: 2px solid white;
 }
 #gallery img.selected {
-    border: 3px solid green;
+    border: 2px solid #ff0000;
 }
 #gallery img:hover {
     cursor: pointer;
 }
+
 
  body {
     display: block;
@@ -21,8 +22,9 @@
     
     margin-top: -5px;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 5px;
     height:100px;
+    width: 1325px;
     background-color: #1a1a1a;
 
     }
@@ -100,7 +102,7 @@
     		position: absolute;
     	margin: 10px 10px 10px 10px;
     	width: 1325px;
-    	height: 465px;
+    	height: 765px;
     	background-color: white;
     
     }
@@ -110,7 +112,7 @@
     
     padding-top: 0px;
     font-size: 22px;
-    color: #000000;
+    color: white;
     text-align: center;
     height:40px;
     line-height: 40px;
@@ -124,14 +126,14 @@
     .primary{
     
     float: left;
-    	margin-left: 30px;
-    	margin-top: 20px;
-    	margin-rigth: 20px;
+    	margin-left: 10px;
+    	margin-top: 10px;
+    	margin-rigth: 10px;
     	
-    	background-color: #bfbfbf;
+    	background-color: #1a1a1a;
     	
-    	height: 420px;
-    	max-height: 415px;
+    	height: 740px;
+    	max-height: 735px;
     	width: 250px;
     	overflow: auto;
     	
@@ -141,15 +143,15 @@
         .secondary{
     
     float: left;
-    	margin-left: 20px;
-    	margin-top: 20px;
-    	margin-rigth: 30px;
+    	margin-left: 10px;
+    	margin-top: 10px;
+    	margin-rigth: 10px;
     	
-    	background-color: #f1f1ff;
+    	background-color: #1a1a1a;
     	
-    	height: 420px;
-    	max-height: 415px;
-    	width: 1000px;
+    	height: 740px;
+    	max-height: 735px;
+    	width: 1040px;
     	overflow: auto;
     	
     
@@ -173,21 +175,21 @@
     padding-top: 3px;
     padding-bottom: 3px;
     font-size: 16px;
-    color: red;
+    color: #ffffff;
     text-align: left;
     height:auto;
     line-height: 18px;
     width: 235px;
     font-family: Georgia,'Times New Roman',times,serif;
 	vertical-align: middle;
-    background-color: yellow;
+    background-color: #605d5d;
     }
     
     .galleryname{
     
     margin-left: 15px;
     font-size: 16px;
-    color: #1a1a1a;
+    color: #ffffff;
     text-align: left;
     height:auto;
     line-height: 18px;
@@ -197,10 +199,14 @@
     
     }
     
+    .gallerynamelink{
+    	color:white;
+    }
+    
     .gallerydes{
     
     font-size: 12px;
-    color: #4d4d4d;
+    color: #e5e5e5;
     font-family: Georgia,'Times New Roman',times,serif;
 	vertical-align: middle;
     	
@@ -210,14 +216,14 @@
     .addedit{
     
     font-size: 16px;
-    color: white;
+    color: #4d4d4d;
     text-align: center;
     height:30px;
     line-height: 30px;
-    width: 100px;
-    margin: 0px 55px 5px 75px;
+    width: 150px;
+    margin: 10px 55px 5px 45px;
     font-family: Georgia,'Times New Roman',times,serif;
-    background-color: #1a1a1a;
+    background-color: #ffffff;
 	vertical-align: middle;
     
     }
@@ -237,4 +243,28 @@
     
     }
     
+    .customform{
+    
+    	margin: 0px 150px 0px 150px;
+    	padding: 15px 10px 10px 10px;
+    	background-color: #e5e5e5;
+    	width: auto;
+    	height:auto;
+    	
+    }
+    
+    .msg{
+    
+    	color: white;
+    }
+    
+    #imageDesc{
+    
+    
+    	height: 350px;
+    	width: 900px;
+    	background-color: white;
+    	z-index: 20;
+    
+    }
     

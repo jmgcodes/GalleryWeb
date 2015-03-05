@@ -12,18 +12,20 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	
 	<style>a:link {color: #000000}</style>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>
-		<script>
-		
-		$(function () {
-		    $("#gallery > img").click(function () {
-		    	
-		        $("img.selected").removeClass("selected");
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>
 
-		        $(this).toggleClass("selected");
-		    });
+	<script>
+	
+	$(function () {
+		$("#gallery > img").click(function () {
+		$("img.selected").removeClass("selected");
+		$(this).toggleClass("selected");
+		$('#imageDesc').load('imageDesc.jsp?id=' + $(this).attr("id") + '&detid=' + $(this).attr("title") + '&info=0');
+        
 		});
-		</script>
+		});
+	
+	</script>
 		
   </head>
   <body  style="background-image:url(bg_pic.jpg)">
@@ -43,10 +45,15 @@
 	String GalleryID = request.getParameter("galleryid");
 	String Session_Gallery_Name = "";
 	String Session_Gallery_Desc = "";
-
 	
 	String gallery_name = request.getParameter("galleryname");
 	String gallery_description = request.getParameter("gallerydesc");
+	
+	String img_title = request.getParameter("imgtitle");
+	String img_desc = request.getParameter("imgdesc");
+	String imageID = request.getParameter("imageID");
+	String detailID = request.getParameter("detailID");
+
 	
 %>
 <%
@@ -131,7 +138,7 @@
 					<p class = "gallerynamesel">
 					
 						<img class = "galleryimg" src = "gallery_dp.png"/>
-						<a style="text-decoration:none" href="index.jsp?galleryid=<%=rs.getString("gallery_id")%>&funcID=<%="1"%>" ><b> <%= rs.getString("name")%></b></a>
+						<a class = "gallerynamelink" style="text-decoration:none;color:white" href="index.jsp?galleryid=<%=rs.getString("gallery_id")%>&funcID=<%="1"%>" ><b> <%= rs.getString("name")%></b></a>
 						 &nbsp;<br>
 						<span class = "gallerydes"> "<%= rs.getString("description")%>" </span>
 					
@@ -146,7 +153,7 @@
 					<p class = "galleryname">
 					
 						<img class = "galleryimg" src = "gallery_dp.png"/>
-						<a style="text-decoration:none" href="index.jsp?galleryid=<%=rs.getString("gallery_id")%>&funcID=<%="1"%>" ><b> <%= rs.getString("name")%></b></a>
+						<a class = "gallerynamelink" style="text-decoration:none;color:white" href="index.jsp?galleryid=<%=rs.getString("gallery_id")%>&funcID=<%="1"%>" ><b> <%= rs.getString("name")%></b></a>
 						 &nbsp;<br>
 						<span class = "gallerydes"> "<%= rs.getString("description")%>" </span>
 					
@@ -247,7 +254,7 @@
 						
 						%>
 						
-						<Center><p>Select a gallery to view images</p></Center>
+						<Center><p class = "msg">Select a gallery to view images</p></Center>
 						
 						<%
 						
@@ -263,7 +270,7 @@
 				<center>
 				
 					<br>
-					<form method="post">
+					<form class = "customform" method="post">
     					<input name="SubmitID" type="hidden" value="1">
 						<input name="Save" type="hidden" value="1">
 						<input name="AddEditID" type="hidden" value="1">
@@ -284,14 +291,16 @@
 				stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
 				String sql_img="SELECT * FROM image WHERE gallery_id = " + GalleryID;
 				rs=stmt.executeQuery(sql_img); // Result set get the result of the SQL query
+
 				int count = 0;
 
 				while (rs.next()) {
+
+					
 					count++;
 					%>
 					
-					    <img src=<%=rs.getString("link") %> />
-					
+					    <img id = <%=rs.getString("image_id") %> src=<%=rs.getString("link") %> title=<%=rs.getString("detail_id") %>/> 
 					<%
 				}
 				
@@ -299,7 +308,7 @@
 					
 					%>
 					
-					<p>No images.. Empty gallery!</p>
+					<p class = "msg">No images.. Empty gallery!</p>
 					
 					<%
 										
@@ -311,12 +320,17 @@
 				%>
 					
 				</div>		</center>	
+				
+				<% if(count>0){ %>
+				<br>
+				<Center><div id = "imageDesc"><br><br>Select an image</div></Center>
 				<%
+				}
 				}
 				else{
 					%>
 					
-					<center><p>No images.. Empty gallery!</p></center>
+					<center><p class = "msg">No images.. Empty gallery!</p></center>
 					
 					<%
 				}
@@ -384,7 +398,7 @@ else if(AddEditID != null && SubmitID == null){
 				%>
 					<center><h3 class = "page_title"> <b>Add Gallery</b> </h3>
 					
-					<form method="post">
+					<form  class = "customform" method="post">
     					<input name="SubmitID" type="hidden" value="1">
 						<input name="AddEditID" type="hidden" value="1">
 						<input name="funcID" type="hidden" value="1">
@@ -471,6 +485,21 @@ else if(SubmitID != null){
 	
 					}
 				break;
+				
+				case 2:
+					stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
+					String sql_art="UPDATE image SET title=\"" + img_title +"\" WHERE image_id=" + imageID ;
+					int result=stmt.executeUpdate(sql_art); // Result set get the result of the SQL query
+					if (result != 0) {
+
+						stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
+						sql_art="UPDATE detail SET description=\"" + img_desc +"\" WHERE image_id=" + imageID + " AND detail_id=" + detailID ;
+						result=stmt.executeUpdate(sql_art); // Result set get the result of the SQL query
+
+						if (result != 0) {
+						}
+						
+					}
 
 				
 		}
@@ -489,6 +518,7 @@ else if(SubmitID != null){
 
 </div>
   
+    
   </body>
   
 </html>
