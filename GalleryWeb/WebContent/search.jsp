@@ -10,6 +10,7 @@
     <title>Imgur</title>
     
 	<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="search.css">
 	
 	<style>a:link {color: #000000}</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>
@@ -23,12 +24,8 @@
   
 <%
 
-	String ArtistID = request.getParameter("artistid");
-
-	String AddEditID = request.getParameter("AddArtist");
-	String SubmitID = request.getParameter("SubmitArtist");
-	
-	
+	String SearchID = request.getParameter("form");
+	String SubmitID = request.getParameter("submitform");
 
 
 	try {
@@ -72,165 +69,34 @@
 <div class = "tabContainer">
 
 <div class = "primary">
-<% 				
-	try {
-		String url="jdbc:mysql://127.0.0.1:3306/gallery";
-		String id="gallery";
-		String pwd="eecs221";
-		Connection con= DriverManager.getConnection(url,id,pwd); 
-	
-		Statement stmt;
-		PreparedStatement pstmt;
-		ResultSet rs;
-				
-				%>
-					<center><h3 class = "page_title"> <b>Artists</b> </h3></center>
-				<%
-				
-				stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
-				String sql="SELECT * FROM artist";
-				rs=stmt.executeQuery(sql); // Result set get the result of the SQL query
-				while (rs.next()) {
-					
-					if(ArtistID == null)
-						ArtistID = "0";
-					
-					if(ArtistID.equals(rs.getString("artist_id"))){
-					
-					%>
-					
-					<p class = "artistnamesel">
-					
-						<a class = "artistnamelink" style="text-decoration:none;color:white" href="artist.jsp?artistid=<%=rs.getString("artist_id")%>" ><b> <%= rs.getString("name")%></b></a>
-						 &nbsp;<br>
-					
-				
-					</p>
-					
-					<%
-					}
-					else{
-						%>
-						
-					<p class = "artistname">
-					
-						<a class = "artistnamelink" style="text-decoration:none;color:white" href="artist.jsp?artistid=<%=rs.getString("artist_id")%>" ><b> <%= rs.getString("name")%></b></a>
-						 &nbsp;<br>
-				
-					</p>
-						
-						
-						<%					
-						
-					}
-				}
-				
-				%>
-				
-				<form method="post">
-    				<input name="AddArtist" type="hidden" value="1">
-    				<input class = "addedit" type="submit" value="Add Artist"/>
-				</form>
-			
-				
-				<%
-				rs.close();
-				stmt.close();
-				
-		con.close();
-	}
-	catch(Exception e)
-	{
-			out.println("error1: " + e.toString());
-	} 	
-	
- %>
+
+<center><h3 class = "page_title"> <b>Search</b> </h3></center>
+
+<p class = "searchmsg"> Images by </p>
+<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=1"> Type </a><br>
+<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=2"> Year </a><br>
+<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=3"> Artist </a><br>
+<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=4"> Location </a><br>
+
+<br><br>
+
+<p class = "searchmsg"> Artists by </p>
+<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=5"> Country </a><br>
+<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=6"> Birth year </a><br>
+
+
 </div>
 
 <div class = "secondary">
-<% if(AddEditID == null) {				
+<% if(SearchID == null) {				
 	try {
-		String url="jdbc:mysql://127.0.0.1:3306/gallery";
-		String id="gallery";
-		String pwd="eecs221";
-		Connection con= DriverManager.getConnection(url,id,pwd); 
-	
-		Statement stmt;
-		PreparedStatement pstmt;
-		ResultSet rs;
-				
-				
-				if(ArtistID != null){
-					
-					if(ArtistID.equals("0")){
+
+		%>
 						
-						%>
+			<Center><p class = "msg">Select a search type</p></Center>
 						
-						<Center><p class = "msg">Select a Artist to view details</p></Center>
-						
-						<%
+		<%
 												
-					}
-					else{
-				
-				stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
-				String sql_img="SELECT * FROM artist WHERE artist_id = " + ArtistID;
-				rs=stmt.executeQuery(sql_img); // Result set get the result of the SQL query
-
-				int count = 0;
-
-				while (rs.next()) {
-
-					
-					count++;
-					%>
-					
-					<center>
-					
-					<h3 class = "page_title"> <%= rs.getString("name") %> </h3>
-					
-					<div class = "artistdetails">
-					<center>
-				<p class = "detail"><span class = "detailH">Description:</span> <%= rs.getString("description") %></p>
-		
-		<p class = "detail"><span class = "detailH">YOB:</span>  <%= rs.getString("birth_year") %></p>
-		<p class = "detail"><span class = "detailH">Country:</span> <%= rs.getString("country") %></p>
-					</center>
-					
-					
-							<br>
-		<button id = "edit" onclick="unhide()">Edit Details</button>	
-		<br>
-		<div id = "editform" style="display:none;">
-		
-					<form method="post">
-    					<input name="SubmitArtist" type="hidden" value="2">
-						<input name="AddArtist" type="hidden" value="2">
-						
-						<i>Name:</i> <input name="artname" type="text" value="<%= rs.getString("name")%>">
-						<i>Desc:</i> <input name="artdesc" type="text" value="<%=rs.getString("description")%>">
-    					<i>Country:</i> <input name="artcountry" type="text" value="<%=rs.getString("country")%>">
-    					<input type="submit" value="Save Details"/>
-					</form>
-		
-				
-		</div>	
-					
-					
-									</div>	
-										</center>	
-					
-					<%
-				}
-				
-
-				rs.close();
-				stmt.close();
-				
-				}
-				}
-				
-		con.close();
 	}
 	catch(Exception e)
 	{
@@ -238,27 +104,25 @@
 	} 	
 	
 }
-else if(AddEditID != null && SubmitID == null){
+else if(SearchID != null && SubmitID == null){
 	
 	try {
-		int func=Integer.valueOf(AddEditID);
+		
+		int func=Integer.valueOf(SearchID);
 				
 		switch(func) {
 			case 1:
 				
 				%>
-					<center><h3 class = "page_title"> <b>Add Artist</b> </h3>
+					<center><h3 class = "page_title"> <b>Search Image by Type</b> </h3>
 					
 					<form  class = "customform" method="post">
-    					<input name="SubmitArtist" type="hidden" value="1">
-						<input name="AddArtist" type="hidden" value="2">
+    					<input name="form" type="hidden" value="1">
+						<input name="submitform" type="hidden" value="1">
 						
-						Name: <input class = "normaltf" name="addartname" type="text"><br><br>
-						Desc: <input class = "extendedtf" name="addartdesc" type="text"><br><br>
-						YOB: <input class = "normaltf" name="addartyob" type="text"><br><br>
-						Country: <input class = "normaltf" name="addartcountry" type="text"><br><br>
+						Type: <input class = "normaltf" name="searchtype" type="text"><br><br>
 						
-    					<input type="submit" value="Add"/>
+    					<input type="submit" value="Search"/>
 					</form>
 					
 					</center>
@@ -267,6 +131,108 @@ else if(AddEditID != null && SubmitID == null){
 			
 				break;
 				
+			case 2:
+				
+				%>
+					<center><h3 class = "page_title"> <b>Search Image by Year</b> </h3>
+					
+					<form  class = "customform" method="post">
+    					<input name="form" type="hidden" value="2">
+						<input name="submitform" type="hidden" value="2">
+						
+						From Year: <input class = "normaltf" name="searchfromyear" type="text"><br><br>
+						To Year: <input class = "normaltf" name="searchtoyear" type="text"><br><br>
+						
+    					<input type="submit" value="Search"/>
+					</form>
+					
+					</center>
+				<%
+				
+			
+				break;
+
+			case 3:
+				
+				%>
+					<center><h3 class = "page_title"> <b>Search Image by Artist</b> </h3>
+					
+					<form  class = "customform" method="post">
+    					<input name="form" type="hidden" value="3">
+						<input name="submitform" type="hidden" value="3">
+						
+						Artist Name: <input class = "normaltf" name="searchartist" type="text"><br>
+						
+    					<input type="submit" value="Search"/>
+					</form>
+					
+					</center>
+				<%
+				
+			
+				break;
+
+			case 4:
+				
+				%>
+					<center><h3 class = "page_title"> <b>Search Image by Location</b> </h3>
+					
+					<form  class = "customform" method="post">
+    					<input name="form" type="hidden" value="4">
+						<input name="submitform" type="hidden" value="4">
+						
+						Location: <input class = "normaltf" name="searchlocation" type="text"><br>
+						
+    					<input type="submit" value="Search"/>
+					</form>
+					
+					</center>
+				<%
+				
+			
+				break;
+
+			case 5:
+				
+				%>
+					<center><h3 class = "page_title"> <b>Search Artist by Country</b> </h3>
+					
+					<form  class = "customform" method="post">
+    					<input name="form" type="hidden" value="5">
+						<input name="submitform" type="hidden" value="5">
+						
+						Country: <input class = "normaltf" name="searchcountry" type="text"><br>
+						
+    					<input type="submit" value="Search"/>
+					</form>
+					
+					</center>
+				<%
+				
+			
+				break;
+				
+			case 6:
+				
+				%>
+					<center><h3 class = "page_title"> <b>Search Artist by Year of birth</b> </h3>
+					
+					<form  class = "customform" method="post">
+    					<input name="form" type="hidden" value="6">
+						<input name="submitform" type="hidden" value="6">
+						
+						Year: <input class = "normaltf" name="searchyob" type="text"><br>
+						
+    					<input type="submit" value="Search"/>
+					</form>
+					
+					</center>
+				<%
+				
+			
+				break;
+
+
 		}
 	}
 	catch(Exception e)
@@ -292,58 +258,192 @@ else if(SubmitID != null){
 		switch(func) {
 				
 				case 1:
-					pstmt = con.prepareStatement("insert into artist values (default,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
-					// Use ? to represent the variables
-					pstmt.clearParameters();
-					// Parameters start with 1
-					pstmt.setString(1, request.getParameter("addartname"));
-					pstmt.setString(2, request.getParameter("addartyob"));
-					pstmt.setString(3, request.getParameter("addartcountry"));
-					pstmt.setString(4, request.getParameter("addartdesc"));
-					pstmt.executeUpdate();
-					rs=pstmt.getGeneratedKeys();
+					%>
+					<center><h3 class = "page_title"> <b>Results for Image type "<%=request.getParameter("searchtype")%>"</b> </h3></center>
+					<%
+					
+					stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
+					String sql1="SELECT * FROM image NATURAL JOIN detail WHERE type=\"" + request.getParameter("searchtype") + "\"";
+					rs=stmt.executeQuery(sql1); // Result set get the result of the SQL query
+					
+					int count1 = 0;
+					
 					while (rs.next()) {
+						
+						count1++;
 						%>
-						<center><h3 class = "page_title"> <b>Artist added successfully!</b> </h3>
-						
-						<form method="post">
-	    					<input type="submit" value="Refresh"/>
-						</form>
-						
-						</center>
+						<p class = "results"><img src="<%=rs.getString("link") %>"/> &nbsp;&nbsp;<a target ="_blank" href = <%=rs.getString("link") %> style="text-decoration:none"><b><%=rs.getString("title") %></b> &nbsp; <i>"<%=rs.getString("description") %>"</i></a></p>
 						<%
 						
 					}
-					pstmt.close();
+					
+					if(count1 == 0){
+						%>
+						<br><br>
+						<Center><p class = "msg">No images found</p></Center>
+						<%
+
+					}
 					rs.close();
 
 				break;
 				
+				
 				case 2:
-					
-					String artname = request.getParameter("artname");
-					String artdesc = request.getParameter("artdesc");
-					String artcountry = request.getParameter("artcountry");
+					%>
+					<center><h3 class = "page_title"> <b>Results for Image from "<%=request.getParameter("searchfromyear")%>" to "<%=request.getParameter("searchtoyear")%>"</b> </h3></center>
+					<%
 					
 					stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
-					String sql_art="UPDATE artist SET name=\"" + artname +"\", description=\"" + artdesc + "\", country=\"" + artcountry + "\" WHERE artist_id =" + ArtistID ;
-					int result=stmt.executeUpdate(sql_art); // Result set get the result of the SQL query
-					if (result != 0) {
-
-							%>
-							<Center><p class = "msg">Artist details updated.. Select an artist to view details</p>
-							
-							<form method="post">
-								<input type="submit" value="Refresh"/>
-							</form>
-							
-							</Center>
-							
-							<%
+					String sql2="SELECT * FROM image NATURAL JOIN detail WHERE year>\"" + request.getParameter("searchfromyear") + "\" AND year<\"" + request.getParameter("searchtoyear") + "\"";
+					rs=stmt.executeQuery(sql2); // Result set get the result of the SQL query
+					
+					int count2 = 0;
+					
+					while (rs.next()) {
+						
+						count2 ++;
+						%>
+						<p class = "results"><img src="<%=rs.getString("link") %>"/> &nbsp;&nbsp;<a target ="_blank"  href = <%=rs.getString("link") %> style="text-decoration:none"><b><%=rs.getString("title") %></b> &nbsp; <i>"<%=rs.getString("description") %>"</i></a></p>
+						<%
 						
 					}
+					
+					if(count2 == 0){
+						%>
+						<br><br>
+						<Center><p class = "msg">No images found</p></Center>
+						<%
+
+					}
+					rs.close();
+
 				break;
-				
+
+				case 3:
+					%>
+					<center><h3 class = "page_title"> <b>Results for Image from "<%=request.getParameter("searchartist")%>"</b> </h3></center>
+					<%
+					
+					stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
+					String sql3="SELECT * FROM image, detail, artist where image.image_id = detail.image_id and image.detail_id=detail.detail_id and image.artist_id=artist.artist_id and artist.name=\"" + request.getParameter("searchartist") + "\"";
+					rs=stmt.executeQuery(sql3); // Result set get the result of the SQL query
+					
+					int count3 = 0;
+					
+					while (rs.next()) {
+						
+						count3 ++;
+						%>
+						<p class = "results"><img src="<%=rs.getString("image.link") %>"/> &nbsp;&nbsp;<a target ="_blank"  href = <%=rs.getString("image.link") %> style="text-decoration:none"><b><%=rs.getString("image.title") %></b> &nbsp; <i>"<%=rs.getString("detail.description") %>"</i></a></p>
+						<%
+						
+					}
+					
+					if(count3 == 0){
+						%>
+						<br><br>
+						<Center><p class = "msg">No images found</p></Center>
+						<%
+
+					}
+					rs.close();
+
+				break;
+
+				case 4:
+					%>
+					<center><h3 class = "page_title"> <b>Results for Image Location "<%=request.getParameter("searchlocation")%>"</b> </h3></center>
+					<%
+					
+					stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
+					String sql4="SELECT * FROM image NATURAL JOIN detail WHERE location=\"" + request.getParameter("searchlocation") + "\"";
+					rs=stmt.executeQuery(sql4); // Result set get the result of the SQL query
+					
+					int count4 = 0;
+					
+					while (rs.next()) {
+						
+						count4++;
+						%>
+						<p class = "results"><img src="<%=rs.getString("link") %>"/> &nbsp;&nbsp;<a target ="_blank" href = <%=rs.getString("link") %> style="text-decoration:none"><b><%=rs.getString("title") %></b> &nbsp; <i>"<%=rs.getString("description") %>"</i></a></p>
+						<%
+						
+					}
+					
+					if(count4 == 0){
+						%>
+						<br><br>
+						<Center><p class = "msg">No images found</p></Center>
+						<%
+
+					}
+					rs.close();
+
+				break;
+
+				case 5:
+					%>
+					<center><h3 class = "page_title"> <b>Results for Artists from "<%=request.getParameter("searchcountry")%>"</b> </h3></center>
+					<%
+					
+					stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
+					String sql5="SELECT * FROM artist WHERE country=\"" + request.getParameter("searchcountry") + "\"";
+					rs=stmt.executeQuery(sql5); // Result set get the result of the SQL query
+					
+					int count5 = 0;
+					
+					while (rs.next()) {
+						
+						count5++;
+						%>
+						<p class = "results"> &nbsp;&nbsp;<b><%=rs.getString("name") %></b> &nbsp; &nbsp; <i>"<%=rs.getString("description") %>"</i></p>
+						<%
+						
+					}
+					
+					if(count5 == 0){
+						%>
+						<br><br>
+						<Center><p class = "msg">No Artists found</p></Center>
+						<%
+
+					}
+					rs.close();
+
+				break;
+
+				case 6:
+					%>
+					<center><h3 class = "page_title"> <b>Results for Artists born in "<%=request.getParameter("searchyob")%>"</b> </h3></center>
+					<%
+					
+					stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
+					String sql6="SELECT * FROM artist WHERE birth_year=\"" + request.getParameter("searchyob") + "\"";
+					rs=stmt.executeQuery(sql6); // Result set get the result of the SQL query
+					
+					int count6 = 0;
+					
+					while (rs.next()) {
+						
+						count6++;
+						%>
+						<p class = "results"> &nbsp;&nbsp;<b><%=rs.getString("name") %></b> &nbsp; &nbsp; <i>"<%=rs.getString("description") %>"</i></p>
+						<%
+						
+					}
+					
+					if(count6 == 0){
+						%>
+						<br><br>
+						<Center><p class = "msg">No Artists found</p></Center>
+						<%
+
+					}
+					rs.close();
+
+				break;
+
 				
 		}
 	}
@@ -360,18 +460,7 @@ else if(SubmitID != null){
 </div>
 
 </div>
-  
-  	<script>
-
-function unhide(){
-	
-	   document.getElementById('editform').style.display = "block";
-	   document.getElementById('edit').style.display = "none";
-
-}
-
-</script>
-    
+     
   </body>
   
 </html>

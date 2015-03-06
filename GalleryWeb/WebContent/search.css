@@ -1,0 +1,58 @@
+.searchmsg{
+	
+	margin-left: 15px;
+    font-size: 16px;
+    color: #ffffff;
+    text-align: left;
+    height:auto;
+    line-height: 18px;
+    width: 200px;
+    font-family: Georgia,'Times New Roman',times,serif;
+	vertical-align: middle;
+	
+	
+}
+
+.searchcat{
+	
+	margin-left: 25px;
+    font-size: 16px;
+    color: #ffffff;
+    text-align: left;
+    height:auto;
+    line-height:25px;
+    width: 200px;
+    font-family: Georgia,'Times New Roman',times,serif;
+	vertical-align: middle;
+	    font-weight: bold;
+	
+}
+
+.results{
+	
+	height: auto;
+	width: 870px;
+	font-size: 18px;
+	line-height: 50px;
+	margin-left: 100px;
+	background-color: #e5e5e5;
+	
+}
+
+.results a{
+	
+	height: auto;
+	line-height: 50px;
+	
+	
+}
+
+
+.results img {
+	float:left;
+	margin: 5px;
+	margin-left: 30px;
+    width: 40px;
+    height: 40px;
+    border: 0.5px solid black;
+}

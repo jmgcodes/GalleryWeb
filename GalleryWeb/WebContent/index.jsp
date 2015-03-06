@@ -236,7 +236,17 @@
 						break;
 						
 					}
-									
+						
+					stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
+					String sql_img_count="SELECT * FROM image WHERE gallery_id = " + GalleryID;
+					rs=stmt.executeQuery(sql_img_count); // Result set get the result of the SQL query
+
+					int count_images = 0;
+					
+					while(rs.next())
+						count_images++;
+
+
 				%>
 				
 				
@@ -256,7 +266,7 @@
 					</form>
 					<hr>
 				
-				<h3 class = "page_title"> <b>Images</b> &nbsp; <button onclick = "addimage()"> Add Image</button></h3>
+				<h3 class = "page_title"> <b>Images</b>(<%=count_images %>) &nbsp; <button onclick = "addimage()"> Add Image</button></h3>
 									<div id="gallery">
 				
 				
