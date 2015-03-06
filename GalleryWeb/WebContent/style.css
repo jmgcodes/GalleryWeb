@@ -34,7 +34,7 @@
     	float: left;
     	margin-top: 20px;
     	margin-left: 80px;
-    	margin-right: 250px;
+    	margin-right: 150px;
         font-family: Georgia,'Times New Roman',times,serif;
     	font-size: 56px;
     	color: white;
@@ -213,6 +213,64 @@
     
     }
     
+    
+    .artistnamesel{
+    
+    padding-left: 15px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 16px;
+    color: #ffffff;
+    text-align: left;
+    height:auto;
+    line-height: 18px;
+    width: 235px;
+    font-family: Georgia,'Times New Roman',times,serif;
+	vertical-align: middle;
+    background-color: #605d5d;
+    }
+    
+    .artistname{
+    
+    margin-left: 15px;
+    font-size: 16px;
+    color: #ffffff;
+    text-align: left;
+    height:auto;
+    line-height: 18px;
+    width: 200px;
+    font-family: Georgia,'Times New Roman',times,serif;
+	vertical-align: middle;
+    
+    }
+    
+    .artistnamelink{
+    	color:white;
+    }
+    
+    .artistdes{
+    
+    font-size: 12px;
+    color: #e5e5e5;
+    font-family: Georgia,'Times New Roman',times,serif;
+	vertical-align: middle;
+    	
+    
+    }
+    
+    
+    .artistdetails{
+    
+    margin-top: 20px 20px 20px 20px;
+    padding-top: 20px;
+    height: 250px;
+    width: 900px;
+        background-color: #e5e5e5;
+    
+    
+    }
+    
+    
     .addedit{
     
     font-size: 16px;
@@ -231,7 +289,7 @@
     .normaltf{
     
     	width: 500px;
-    	height: 40px;
+    	height: 30px;
     
     }
     
@@ -239,9 +297,19 @@
     .extendedtf{
     
     	width: 500px;
-    	height: 120px;
+    	height: 90px;
     
     }
+    
+    
+	.smalltf{
+    
+    	margin-top: 3px;
+    	width: 100px;
+    	height: 30px;
+    
+    }
+    
     
     .customform{
     
@@ -267,4 +335,30 @@
     	z-index: 20;
     
     }
+    
+    
+.detailH{
+	
+    font-size: 14px;
+    color: #4d4d4d;
+    text-align: center;
+    margin:10px 0px 0px 5px;
+    height:25px;
+    line-height: 25px;
+    font-family: Georgia,'Times New Roman',times,serif;
+	
+}
+
+.detail{
+	
+    font-size: 18px;
+    color: #1a1a1a;
+    text-align: center;
+    margin:10px 0px 0px 5px;
+    height:25px;
+    line-height: 25px;
+    font-family: Georgia,'Times New Roman',times,serif;
+	
+}
+    
     

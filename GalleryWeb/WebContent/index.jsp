@@ -7,7 +7,7 @@
 <html>
   <head>
     
-    <title>Gallery Application</title>
+    <title>Imgur</title>
     
 	<link rel="stylesheet" type="text/css" href="style.css">
 	
@@ -21,9 +21,17 @@
 		$("img.selected").removeClass("selected");
 		$(this).toggleClass("selected");
 		$('#imageDesc').load('imageDesc.jsp?id=' + $(this).attr("id") + '&detid=' + $(this).attr("title") + '&info=0');
-        
+
 		});
 		});
+	
+	function addimage(){
+		
+		$("img.selected").removeClass("selected");
+		
+		$('#imageDesc').load('imageDesc.jsp');
+		
+	}
 	
 	</script>
 		
@@ -40,6 +48,9 @@
 	String AddEditID = request.getParameter("AddEditID");
 	String SubmitID = request.getParameter("SubmitID");
 
+	if(funcID==null)
+		funcID = "1";
+		
 	String Save = request.getParameter("Save");
 	
 	String GalleryID = request.getParameter("galleryid");
@@ -68,15 +79,21 @@
 %>
 
 
-<form method="post">
+<form action = "index.jsp" method="post">
     		<input name="funcID" type="hidden" value="1">
     		<input class = "tabs" type="submit" value="Galleries"/>
 </form>
 
-<form method="post">
+<form action="artist.jsp" method="post">
 			<input name="funcID" type="hidden" value="2">
     		<input  class = "tabs" type="submit" value="Artists"/>
 </form>
+
+<form action="search.jsp" method="post">
+			<input name="funcID" type="hidden" value="3">
+    		<input  class = "tabs" type="submit" value="Search"/>
+</form>
+
 
 <div id = "userdetails">
 
@@ -179,48 +196,6 @@
 				stmt.close();
 				break;
 				
-			case 2:
-				stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
-				String sql_art="SELECT * FROM artist";
-				rs=stmt.executeQuery(sql_art); // Result set get the result of the SQL query
-				out.println("<table border=\"1\">");
-				out.println("<caption> Artists List </caption>");
-				out.println("<tr>");
-				out.println("<th>ID</th>");
-				out.println("<th>Name</th>");
-				out.println("<th>Birth year</th>");
-				out.println("<th>Country</th>");
-				out.println("<th>Description</th>");
-				out.println("</tr>");
-				while (rs.next()) {
-					out.println("<tr>");
-					out.println("<td>"+rs.getString("artist_id")+"</td>");
-					out.println("<td>"+rs.getString("name")+"</td>");
-					out.println("<td>"+rs.getString("birth_year")+"</td>");
-					out.println("<td>"+rs.getString("country")+"</td>");
-					out.println("<td>"+rs.getString("description")+"</td>");
-					out.println("</tr>");
-				}
-				rs.close();
-				stmt.close();
-				out.println("</table>");
-				break;
-			/* case 2:
-				// PreparedStatements can use variables and are more efficient
-				pstmt = con.prepareStatement("insert into gallery values (default,?,?)",Statement.RETURN_GENERATED_KEYS);
-				// Use ? to represent the variables
-				pstmt.clearParameters();
-				// Parameters start with 1
-				pstmt.setString(1, gallery_name);
-				pstmt.setString(2, gallery_description);
-				pstmt.executeUpdate();
-				rs=pstmt.getGeneratedKeys();
-				while (rs.next()) {
-					out.println("Successfully added. Gallery_ID: "+rs.getInt(1));
-				}
-				rs.close();
-				pstmt.close();
-				break;*/
 		}
 		con.close();
 	}
@@ -281,7 +256,7 @@
 					</form>
 					<hr>
 				
-				<h3 class = "page_title"> <b>Images</b> </h3>
+				<h3 class = "page_title"> <b>Images</b> &nbsp; <button onclick = "addimage()"> Add Image</button></h3>
 									<div id="gallery">
 				
 				
@@ -336,48 +311,6 @@
 				}
 				break;
 				
-			case 2:
-				stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
-				String sql_art="SELECT * FROM artist";
-				rs=stmt.executeQuery(sql_art); // Result set get the result of the SQL query
-				out.println("<table border=\"1\">");
-				out.println("<caption> Artists List </caption>");
-				out.println("<tr>");
-				out.println("<th>ID</th>");
-				out.println("<th>Name</th>");
-				out.println("<th>Birth year</th>");
-				out.println("<th>Country</th>");
-				out.println("<th>Description</th>");
-				out.println("</tr>");
-				while (rs.next()) {
-					out.println("<tr>");
-					out.println("<td>"+rs.getString("artist_id")+"</td>");
-					out.println("<td>"+rs.getString("name")+"</td>");
-					out.println("<td>"+rs.getString("birth_year")+"</td>");
-					out.println("<td>"+rs.getString("country")+"</td>");
-					out.println("<td>"+rs.getString("description")+"</td>");
-					out.println("</tr>");
-				}
-				rs.close();
-				stmt.close();
-				out.println("</table>");
-				break;
-			/* case 2:
-				// PreparedStatements can use variables and are more efficient
-				pstmt = con.prepareStatement("insert into gallery values (default,?,?)",Statement.RETURN_GENERATED_KEYS);
-				// Use ? to represent the variables
-				pstmt.clearParameters();
-				// Parameters start with 1
-				pstmt.setString(1, gallery_name);
-				pstmt.setString(2, gallery_description);
-				pstmt.executeUpdate();
-				rs=pstmt.getGeneratedKeys();
-				while (rs.next()) {
-					out.println("Successfully added. Gallery_ID: "+rs.getInt(1));
-				}
-				rs.close();
-				pstmt.close();
-				break;*/
 		}
 		con.close();
 	}
@@ -523,6 +456,58 @@ else if(SubmitID != null){
 						
 					}
 				break;
+				
+				case 4:
+					
+					pstmt = con.prepareStatement("insert into image values (default,?,?,?,?,0)",Statement.RETURN_GENERATED_KEYS);
+					// Use ? to represent the variables
+					pstmt.clearParameters();
+					// Parameters start with 1
+					pstmt.setString(1, request.getParameter("addimgtitle"));
+					pstmt.setString(2, request.getParameter("addimglink"));
+					pstmt.setString(3, request.getParameter("galleryid"));
+					pstmt.setString(4, request.getParameter("addimgartist"));
+					pstmt.executeUpdate();
+					rs=pstmt.getGeneratedKeys();
+					while (rs.next()) {
+						
+					int img_id = rs.getInt(1);
+						
+					pstmt = con.prepareStatement("insert into detail values (default,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+					// Use ? to represent the variables
+					pstmt.clearParameters();
+					// Parameters start with 1
+					pstmt.setString(1, "" + img_id);
+					pstmt.setString(2, request.getParameter("addimgyear"));
+					pstmt.setString(3, request.getParameter("addimgtype"));
+					pstmt.setString(4, request.getParameter("addimgwidth"));
+					pstmt.setString(5, request.getParameter("addimgheight"));
+					pstmt.setString(6, request.getParameter("addimglocation"));
+					pstmt.setString(7, request.getParameter("addimgdesc"));
+					pstmt.executeUpdate();
+					rs=pstmt.getGeneratedKeys();
+					while (rs.next()) {
+
+						int detail_id = rs.getInt(1);
+					
+						stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
+						sql_art="UPDATE image SET detail_id=\"" + detail_id +"\" WHERE image_id=" + img_id ;
+						result=stmt.executeUpdate(sql_art); // Result set get the result of the SQL query
+
+						if (result != 0) {
+
+						
+						%>
+							<Center><p class = "msg">Image added successfully! Select a gallery to view images</p></Center>
+						<%
+						}
+					}
+
+					}
+					pstmt.close();
+					rs.close();
+
+					break;
 
 				
 		}

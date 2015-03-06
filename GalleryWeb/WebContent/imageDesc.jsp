@@ -19,6 +19,9 @@
 	String ID = request.getParameter("id");
 	String Detail_ID = request.getParameter("detid");
 
+	if(ID != null){
+		
+	
 	if(Detail_ID.contains("/"))
 		Detail_ID = Detail_ID.substring(0, Detail_ID.length()-1);
 
@@ -61,7 +64,7 @@
 		<h3 id = "descid"><%= desc %></h3><br>
 		
 		<p class = "detail"><span class = "detailH">Location:</span>  <%= rs.getString("location") %>, <%= rs.getString("year") %></p>
-		<p class = "detail"><span class = "detailH">Artist:</span> <%= rs.getString("name") %> (<%=rs.getString("artist.description") %>)</p>
+		<p class = "detail"><span class = "detailH">Artist:</span> <a href = "artist.jsp?artistid=<%=rs.getString("artist_id")%>"><%= rs.getString("name") %></a> (<%=rs.getString("artist.description") %>)</p>
 		<p class = "detail"><span class = "detailH">Size:</span> <%= rs.getString("height") %> x <%= rs.getString("width") %></p>
 		<br>
 		<button id = "edit" onclick="unhide()">Edit Details</button>	
@@ -101,6 +104,40 @@
 		</div>
 		
 		<%
+	}
+	}
+	else{
+		
+		
+		%>
+		
+		<br>
+				<h3>Add Image</h3>
+		
+					<form method="post">
+    					<input name="SubmitID" type="hidden" value="4">
+						<input name="Save" type="hidden" value="1">
+						<input name="AddEditID" type="hidden" value="1">
+						<input name="funcID" type="hidden" value="1">
+						
+						<i>Title:</i> <input class ="normaltf" name="addimgtitle" type="text" value=""><br>
+						<i>Link:</i> <input class ="normaltf" name="addimglink" type="text" value=""><br>
+    					<i>Desc:</i> <input class ="extendedtf" name="addimgdesc" type="text" value=""><br>
+    					<i>Place:</i> <input class ="normaltf" name="addimglocation" type="text" value=""><br>
+    					<i>Year:</i> <input class ="smalltf" name="addimgyear" type="text" value="">
+    					<i>Artist ID:</i> <input class ="smalltf" name="addimgartist" type="text" value=""><br>
+    					<i>Type:</i> <input class ="smalltf" name="addimgtype" type="text" value="">
+    					<i>Height:</i> <input class ="smalltf" name="addimgheight" type="text" value="">
+    					<i>Width:</i> <input class ="smalltf" name="addimgwidth" type="text" value=""><br>
+    					<br>
+    					<input type="submit" value="Add"/>
+					</form>
+		
+		
+		
+		<%
+		
+		
 	}
 	
 	%>

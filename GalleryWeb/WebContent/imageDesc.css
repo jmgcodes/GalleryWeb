@@ -73,3 +73,27 @@ body{
 	margin-bottom: 5px;
 	
 }
+
+	.smalltf{
+    
+    	margin-top: 3px;
+    	width: 100px;
+    	height: 30px;
+    
+    }
+    .normaltf{
+    
+    	margin-top: 3px;
+    	width: 400px;
+    	height: 30px;
+    
+    }
+    
+
+    .extendedtf{
+    
+    	margin-top:3px;
+    	width: 400px;
+    	height: 60px;
+    
+    }
