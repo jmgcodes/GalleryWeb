@@ -70,21 +70,21 @@
 
 <div class = "primary">
 
-<center><h3 class = "page_title"> <b>Search</b> </h3></center>
+<center><h3 class = "page_title"> <b>Search</b> </h3><hr></center>
 
 <p class = "searchmsg"> Images by </p>
-<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=1"> Type </a><br>
-<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=2"> Year </a><br>
-<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=3"> Artist </a><br>
-<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=4"> Location </a><br>
+<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=1"> Type >></a><br>
+<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=2"> Year >></a><br>
+<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=3"> Artist >></a><br>
+<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=4"> Location >></a><br>
 
-<br><br>
+<hr>
 
 <p class = "searchmsg"> Artists by </p>
-<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=5"> Country </a><br>
-<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=6"> Birth year </a><br>
+<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=5"> Country >></a><br>
+<a class = "searchcat" style="text-decoration:none;color:white" href="search.jsp?form=6"> Birth year >></a><br>
 
-
+<hr>
 </div>
 
 <div class = "secondary">

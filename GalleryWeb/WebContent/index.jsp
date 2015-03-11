@@ -27,10 +27,11 @@
 	
 	function addimage(){
 		
-		$("img.selected").removeClass("selected");
-		
+		 $("img.selected").removeClass("selected");
 		$('#imageDesc').load('imageDesc.jsp');
-		
+		 document.getElementById("imageDesc").style.backgroundColor = "white";
+
+
 	}
 	
 	</script>
@@ -134,7 +135,7 @@
 			case 1:
 				
 				%>
-					<center><h3 class = "page_title"> <b>Galleries</b> </h3></center>
+					<center><h3 class = "page_title"> <b>Galleries</b> </h3><hr></center>
 				<%
 				
 				stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
@@ -142,14 +143,16 @@
 				rs=stmt.executeQuery(sql); // Result set get the result of the SQL query
 				while (rs.next()) {
 					
-					if(GalleryID == null)
-						GalleryID = "0";
+					if(GalleryID == null){
+						GalleryID = rs.getString("gallery_id");
+					}
 					
 					if(GalleryID.equals(rs.getString("gallery_id"))){
 					
 						Session_Gallery_Name = rs.getString("name");
 						Session_Gallery_Desc = rs.getString("description");
 
+						
 					%>
 					
 					<p class = "gallerynamesel">
@@ -176,14 +179,14 @@
 					
 					</p>
 						
-						
 						<%					
 						
 					}
+					
+					out.print("<hr style=\"color:#1F1F1F\">");
 				}
 				
 				%>
-				
 				<form method="post">
     				<input name="AddEditID" type="hidden" value="1">
     		 		<input name="funcID" type="hidden" value="1">
@@ -294,6 +297,9 @@
 					%>
 					
 					<p class = "msg">No images.. Empty gallery!</p>
+														<br>
+				<Center><div id = "imageDesc" style="background-color:#1a1a1a;"><br>--</div></Center>
+					
 					
 					<%
 										
@@ -316,6 +322,8 @@
 					%>
 					
 					<center><p class = "msg">No images.. Empty gallery!</p></center>
+									<br>
+				<Center><div id = "imageDesc"><br><br>Select an image</div></Center>
 					
 					<%
 				}

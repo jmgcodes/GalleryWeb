@@ -1,3 +1,11 @@
+input[type="text"]{
+
+    border: 1px solid #4d4d4d;
+     border-radius: 5px;
+
+}
+
+
 #gallery img {
 	margin: 10px;
     width: 50px;
@@ -26,7 +34,7 @@
     height:100px;
     width: 1325px;
     background-color: #1a1a1a;
-
+     border-radius: 5px;
     }
     
     #title{
@@ -39,6 +47,7 @@
     	font-size: 56px;
     	color: white;
     	z-index: 200;
+    	     text-shadow: 2px 2px #bfbfbf;
     }
        
     
@@ -55,6 +64,7 @@
     font-family: Georgia,'Times New Roman',times,serif;
     background-color: #1a1a1a;
 	vertical-align: middle;
+	         border-radius: 5px;
 	    
     }
     
@@ -104,6 +114,7 @@
     	width: 1325px;
     	height: 765px;
     	background-color: white;
+         border-radius: 5px;
     
     }
     
@@ -136,6 +147,7 @@
     	max-height: 735px;
     	width: 250px;
     	overflow: auto;
+    	     border-radius: 5px;
     	
     
     }
@@ -153,6 +165,7 @@
     	max-height: 735px;
     	width: 1040px;
     	overflow: auto;
+    	     border-radius: 5px;
     	
     
     }
@@ -171,9 +184,11 @@
     
    .gallerynamesel{
     
+    margin-top:-7px;
     padding-left: 15px;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+       margin-bottom: -9px;
     font-size: 16px;
     color: #ffffff;
     text-align: left;
@@ -182,12 +197,16 @@
     width: 235px;
     font-family: Georgia,'Times New Roman',times,serif;
 	vertical-align: middle;
-    background-color: #605d5d;
+    background-color: #353535;
     }
     
     .galleryname{
     
+       margin-top:-7px;
     margin-left: 15px;
+        padding-top: 8px;
+    padding-bottom: 8px;
+       margin-bottom: -9px;
     font-size: 16px;
     color: #ffffff;
     text-align: left;
@@ -217,8 +236,10 @@
     .artistnamesel{
     
     padding-left: 15px;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: -7px;
+    margin-bottom: -7px;
     font-size: 16px;
     color: #ffffff;
     text-align: left;
@@ -233,6 +254,10 @@
     .artistname{
     
     margin-left: 15px;
+       padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: -7px;
+    margin-bottom: -7px;
     font-size: 16px;
     color: #ffffff;
     text-align: left;
@@ -265,7 +290,8 @@
     padding-top: 20px;
     height: 250px;
     width: 900px;
-        background-color: #e5e5e5;
+        background-color: white;
+         border-radius: 10px;
     
     
     }
@@ -283,6 +309,7 @@
     font-family: Georgia,'Times New Roman',times,serif;
     background-color: #ffffff;
 	vertical-align: middle;
+         border-radius: 5px;
     
     }
     
@@ -315,9 +342,10 @@
     
     	margin: 0px 150px 0px 150px;
     	padding: 15px 10px 10px 10px;
-    	background-color: #e5e5e5;
+    	background-color: white;
     	width: auto;
     	height:auto;
+    	     border-radius: 5px;
     	
     }
     
@@ -333,6 +361,7 @@
     	width: 900px;
     	background-color: white;
     	z-index: 20;
+         border-radius: 10px;
     
     }
     

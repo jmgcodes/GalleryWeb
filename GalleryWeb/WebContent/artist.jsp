@@ -86,7 +86,7 @@
 		ResultSet rs;
 				
 				%>
-					<center><h3 class = "page_title"> <b>Artists</b> </h3></center>
+					<center><h3 class = "page_title"> <b>Artists</b> </h3><hr></center>
 				<%
 				
 				stmt = con.createStatement(); // Statements allow to issue SQL queries to the database
@@ -94,8 +94,9 @@
 				rs=stmt.executeQuery(sql); // Result set get the result of the SQL query
 				while (rs.next()) {
 					
-					if(ArtistID == null)
-						ArtistID = "0";
+					if(ArtistID == null){
+						ArtistID = rs.getString("artist_id");
+					}
 					
 					if(ArtistID.equals(rs.getString("artist_id"))){
 					
@@ -121,14 +122,14 @@
 				
 					</p>
 						
-						
 						<%					
 						
 					}
+					out.print("<hr style=\"color:#1F1F1F\">");
+
 				}
 				
 				%>
-				
 				<form method="post">
     				<input name="AddArtist" type="hidden" value="1">
     				<input class = "addedit" type="submit" value="Add Artist"/>
